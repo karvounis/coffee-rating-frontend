@@ -1,3 +1,3 @@
 app.constant('config', {
-    kpn_api_url: 'localhost:8198'
+    kpn_api_url: 'http://0.0.0.0:3001'
 });

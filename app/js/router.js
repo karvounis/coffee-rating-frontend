@@ -6,6 +6,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             controller: 'mainController'
         })
 
+        .when('/add_flavor', {
+            templateUrl: '/assets/templates/flavor.html',
+            controller: 'flavorController'
+        })
+
         .otherwise({
             redirectTo: '/'
         });

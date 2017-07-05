@@ -18,6 +18,7 @@ gulp.task('js', function () {
         'node_modules/bootstrap/js/collapse.js',
         'node_modules/bootstrap/js/alert.js',
         'node_modules/jsrsasign/lib/footer.js',
+        'node_modules/ionic1-star-rating/dist/index.js',
         'node_modules/jsrsasign/lib/jsrsasign.js'
     ])
         .pipe(gulp.dest('public/assets/js'));
@@ -39,6 +40,22 @@ gulp.task('js', function () {
         .pipe(uglify())
         .pipe(gulp.dest('public/assets/js'))
         .pipe(livereload());
+
+    gulp.src([
+        'app/js/services/*.js'
+    ])
+        .pipe(concat('services.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/assets/js'))
+        .pipe(livereload());
+
+    gulp.src([
+        'app/js/directives/*.js'
+    ])
+        .pipe(concat('directives.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/assets/js'))
+        .pipe(livereload());
 });
 
 gulp.task('html', function () {
@@ -47,6 +64,13 @@ gulp.task('html', function () {
     ])
         .pipe(minifyHtml())
         .pipe(gulp.dest('public/assets/templates'))
+        .pipe(livereload());
+
+    gulp.src([
+        'app/html/directives/*.html'
+    ])
+        .pipe(minifyHtml())
+        .pipe(gulp.dest('public/assets/directives'))
         .pipe(livereload());
 
     gulp.src([
@@ -65,6 +89,13 @@ gulp.task('css', function () {
         .pipe(gulp.dest('public/assets/css'));
 });
 
+gulp.task('images', function () {
+    gulp.src([
+        'node_modules/ionic1-star-rating/dist/assets/images/star-rating.icons.svg'
+    ])
+        .pipe(gulp.dest('public/assets/images'));
+});
+
 gulp.task('fonts', function () {
     gulp.src([
         'node_modules/font-awesome/css/*.*'
@@ -77,7 +108,7 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('public/assets/fonts'));
 });
 
-gulp.task('default', ['html', 'js', 'fonts', 'css']);
+gulp.task('default', ['html', 'js', 'fonts', 'css', 'images']);
 
 gulp.task('watch', function () {
     livereload.listen();
