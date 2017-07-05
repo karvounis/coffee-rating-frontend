@@ -1,6 +1,12 @@
 app.controller('flavorController', ['$scope', '$window', 'backendService', function ($scope, $window, backendService) {
-    console.log('flavorController');
+
     $scope.goToOverview =  function () {
         $window.location.href = '/';
+    };
+
+    $scope.addFlavor = function(drink) {
+        backendService.postDrink(drink).then(function (response) {
+            console.log(response);
+        });
     };
 }]);

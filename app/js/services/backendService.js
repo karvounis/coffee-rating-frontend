@@ -15,6 +15,15 @@ app.factory('backendService', ['$http', 'config', function ($http, config) {
             });
         },
 
+        postDrink: function (data) {
+            console.log(data);
+            return $http({
+                method: 'POST',
+                data: data,
+                url: config.kpn_api_url + '/api/drinks/'
+            });
+        },
+
         addFlavor: function (data) {
             return $http({
                 method: 'POST',
