@@ -1,5 +1,5 @@
-app.controller('mainController', ['$scope', '$rootScope', '$window', '$location', 'backendService', 'authenticationService',
-    function ($scope, $rootScope, $window, $location, backendService, authenticationService) {
+app.controller('mainController', ['$scope', '$rootScope', '$location', 'backendService', 'authenticationService',
+    function ($scope, $rootScope, $location, backendService, authenticationService) {
         $scope.addFlavor = function () {
             $location.path('/add_flavor');
         };
@@ -20,7 +20,7 @@ app.controller('mainController', ['$scope', '$rootScope', '$window', '$location'
         };
 
         $scope.logout = function () {
-            authenticationService.logout($rootScope.globals.currentUser.accessToken).then(function (response) {
+            authenticationService.logout(authenticationService.getAccessToken()).then(function (response) {
                 authenticationService.clearCredentials();
                 $location.path('/login');
             });
