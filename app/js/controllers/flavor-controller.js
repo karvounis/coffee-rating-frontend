@@ -1,4 +1,5 @@
-app.controller('flavorController', ['$scope', '$window', 'backendService', function ($scope, $window, backendService) {
+app.controller('flavorController', ['$scope', '$window', 'backendService',
+    function ($scope, $window, backendService) {
 
     $scope.goToOverview =  function () {
         $window.location.href = '/';
@@ -6,7 +7,6 @@ app.controller('flavorController', ['$scope', '$window', 'backendService', funct
 
     $scope.addFlavor = function(drink) {
         backendService.postDrink(drink).then(function (response) {
-            console.log(response);
         });
     };
 }]);

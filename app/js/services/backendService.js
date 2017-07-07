@@ -16,7 +16,6 @@ app.factory('backendService', ['$http', 'config', function ($http, config) {
         },
 
         postDrink: function (data) {
-            console.log(data);
             return $http({
                 method: 'POST',
                 data: data,
