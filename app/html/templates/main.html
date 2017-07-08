@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h1>Rate the drinks!</h1>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                    <span class="input-group-addon"><li class="glyphicon glyphicon-search"> </li></span>
+                </div>
+            </div>
+            <star-rating-comp on-click="setRatingFilter($event)" speed="'slow'" rating="ratingFilter"></star-rating-comp>
+            <label class="checkbox-inline">
+                <input type="radio" ng-model="typeFilter" value="coffee">
+                Coffee
+            </label>
+            <label class="checkbox-inline">
+                <input type="radio" ng-model="typeFilter" value="tea">
+                Tea
+            </label>
+            <button type="button" class="btn btn-primary btn-lg pull-right" ng-click="clearFilters()">Clear</button>
+        </form>
+    </div>
+</div>
+<flavors drinks="drinks" flavor_type="'coffee'"></flavors>
+<flavors drinks="drinks" flavor_type="'tea'"></flavors>
+<button type="button" class="btn btn-primary btn-lg" ng-click="logout()">Logout</button>
