@@ -7,6 +7,7 @@
         <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon" ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
         <star-rating-comp on-click="changeDrinkRating($event, drink.id)" speed="'slow'" id="'coffee_ '+ drink.id" rating="drink.rating"></star-rating-comp>
     </div>
+    <add-flavor drinks="drinks" type="'coffee'"></add-flavor>
 </div>
 <div class="panel panel-default" ng-hide="typeFilter == 'coffee'">
     <div class="panel-heading">
@@ -17,5 +18,6 @@
         <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon" ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
         <star-rating-comp on-click="changeDrinkRating($event, drink.id)" speed="'slow'" id="'tea '+ drink.id" rating="drink.rating"></star-rating-comp>
     </div>
+    <add-flavor drinks="drinks" type="'tea'"></add-flavor>
 </div>
 

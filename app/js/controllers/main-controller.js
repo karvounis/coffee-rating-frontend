@@ -1,9 +1,5 @@
 app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratingService', 'authenticationService', 'favouriteService',
     function ($scope, $location, drinksService, ratingService, authenticationService, favouriteService) {
-        $scope.addFlavor = function () {
-            $location.path('/add_flavor');
-        };
-
         drinksService.getAllDrinks().then(function (response) {
             $scope.drinks = response.data;
             $scope.drinks.forEach(function (drink) {
