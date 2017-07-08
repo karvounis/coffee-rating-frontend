@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-hide="typeFilter == 'tea'">
     <div class="panel-heading" >
         <h1>Coffees</h1>
     </div>
@@ -8,7 +8,7 @@
         <star-rating-comp on-click="changeDrinkRating($event, drink.id)" speed="'slow'" id="'coffee_ '+ drink.id" rating="drink.rating"></star-rating-comp>
     </div>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-default" ng-hide="typeFilter == 'coffee'">
     <div class="panel-heading">
         <h1>Teas</h1>
     </div>

@@ -6,6 +6,9 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
 
         drinksService.getAllDrinks().then(function (response) {
             $scope.drinks = response.data;
+            $scope.drinks.forEach(function (drink) {
+                drink.rating = 0;
+            });
             getUsersRating();
             getUsersFavourites();
         });
@@ -61,4 +64,10 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
                 $location.path('/login');
             });
         };
+
+        $scope.clearFilters = function () {
+            $scope.search = '';
+            $scope.typeFilter = '';
+            $scope.ratingFilter = '';
+        }
     }]);
