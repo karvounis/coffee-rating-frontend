@@ -1,11 +1,16 @@
-app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratingService', 'authenticationService',
-    function ($scope, $location, drinksService, ratingService, authenticationService) {
+app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratingService', 'authenticationService', 'favouriteService',
+    function ($scope, $location, drinksService, ratingService, authenticationService, favouriteService) {
         $scope.addFlavor = function () {
             $location.path('/add_flavor');
         };
 
         drinksService.getAllDrinks().then(function (response) {
             $scope.drinks = response.data;
+            getUsersRating();
+            getUsersFavourites();
+        });
+
+        var getUsersRating = function () {
             ratingService.getAllRatingsOfUser(authenticationService.getUserId()).then(function (response) {
                 var data = response.data;
                 $scope.drinks.forEach(function (drink) {
@@ -18,7 +23,23 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
                     });
                 })
             });
-        });
+        };
+
+        var getUsersFavourites = function () {
+            favouriteService.getAllFavouritesOfUser(authenticationService.getUserId()).then(function (response) {
+                var data = response.data;
+                console.log(data);
+                $scope.drinks.forEach(function (drink) {
+                    data.forEach(function (item) {
+                        if (drink.id == item.drinkId) {
+                            drink.favourite = item.favourited;
+                            drink.favouriteId = item.id;
+                            return;
+                        }
+                    });
+                })
+            })
+        };
 
         $scope.getDrinkBasedOnId = function (drink_id) {
             var returnDrink = null;

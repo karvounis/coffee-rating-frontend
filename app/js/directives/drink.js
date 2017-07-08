@@ -1,5 +1,5 @@
-app.directive('drink', ['drinksService', 'ratingService', 'authenticationService',
-    function (drinksService, ratingService, authenticationService) {
+app.directive('drink', ['drinksService', 'ratingService', 'authenticationService', 'favouriteService',
+    function (drinksService, ratingService, authenticationService, favouriteService) {
         return {
             restrict: 'E',
             controller: ['$scope', function ($scope) {
@@ -21,9 +21,20 @@ app.directive('drink', ['drinksService', 'ratingService', 'authenticationService
                 };
 
                 $scope.markAs = function (is_favourite, drink_id) {
-                    var data = $scope.getDrinkBasedOnId(drink_id);
-                    data.favourite = is_favourite;
-                    drinksService.putDrink(data, drink_id);
+                    var drink = $scope.getDrinkBasedOnId(drink_id);
+                    var data = {};
+                    data.favourited = is_favourite;
+                    data.drinkId = drink_id;
+                    if (drink.favouriteId) {
+                        favouriteService.updateFavourite(data, authenticationService.getUserId(), drink.favouriteId).then(function (response) {
+                            drink.favourite = response.data.favourited;
+                        });
+                    } else {
+                        favouriteService.createFavourite(data, authenticationService.getUserId()).then(function (response) {
+                            drink.favouriteId = response.data.id;
+                            drink.favourite = response.data.favourited;
+                        })
+                    }
                 };
             }],
             templateUrl: '/assets/directives/drink.html'
