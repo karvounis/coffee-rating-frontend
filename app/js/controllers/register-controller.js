@@ -4,7 +4,7 @@ app.controller('registerController', ['config', '$http', '$location', '$scope', 
             $scope.dataLoading = true;
             authenticationService.register($scope.user).then(function (response) {
                 authenticationService.login($scope.user).then(function (response) {
-                    authenticationService.setAccessToken($scope.user.email, response.data.id);
+                    authenticationService.setCredentials($scope.user.email, response.data.userId, response.data.id);
                     $location.path('/');
                 }, function (response) {
                     $scope.dataLoading = false;

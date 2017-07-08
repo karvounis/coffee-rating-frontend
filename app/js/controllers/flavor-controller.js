@@ -1,12 +1,11 @@
-app.controller('flavorController', ['$scope', '$window', 'backendService',
-    function ($scope, $window, backendService) {
+app.controller('flavorController', ['$scope', '$location', '$window', 'drinksService',
+    function ($scope, $location, $window, backendService) {
+        $scope.goToOverview = function () {
+            $location.path('/');
+        };
 
-    $scope.goToOverview =  function () {
-        $window.location.href = '/';
-    };
-
-    $scope.addFlavor = function(drink) {
-        backendService.postDrink(drink).then(function (response) {
-        });
-    };
-}]);
+        $scope.addFlavor = function (drink) {
+            backendService.postDrink(drink).then(function (response) {
+            });
+        };
+    }]);

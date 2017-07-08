@@ -21,8 +21,9 @@ app.factory('authenticationService', ['$http', 'config', '$window',
                     url: config.kpn_api_url + '/api/reviewers'
                 });
             },
-            setAccessToken: function (email, accessToken) {
+            setCredentials: function (email, userId, accessToken) {
                 $window.localStorage.email = email;
+                $window.localStorage.userId = userId;
                 $window.localStorage.accessToken = accessToken;
             },
             isAuthenticated: function () {
@@ -30,7 +31,11 @@ app.factory('authenticationService', ['$http', 'config', '$window',
             },
             clearCredentials: function () {
                 $window.localStorage.email = null;
+                $window.localStorage.userId = null;
                 $window.localStorage.accessToken = null;
+            },
+            getUserId: function () {
+                return $window.localStorage.userId;
             },
             getAccessToken: function () {
                 return $window.localStorage.accessToken;
