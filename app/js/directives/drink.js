@@ -8,12 +8,13 @@ app.directive('drink', ['drinksService', 'ratingService', 'authenticationService
                     var data = {};
                     data.date = new Date().toISOString();
                     data.rating = $event.rating;
+                    data.reviewerId = authenticationService.getUserId();
                     if (drink.ratingId) {
                         data.id = drink.ratingId;
-                        ratingService.updateRating(data, authenticationService.getUserId(), drink.ratingId);
+                        ratingService.updateRating(data, drink.ratingId);
                     } else {
                         data.drinkId = drink_id;
-                        ratingService.createRating(data, authenticationService.getUserId()).then(function (response) {
+                        ratingService.createRating(data).then(function (response) {
                             drink.ratingId = response.data.id;
                             drink.rating = response.data.rating;
                         });
@@ -25,12 +26,13 @@ app.directive('drink', ['drinksService', 'ratingService', 'authenticationService
                     var data = {};
                     data.favourited = is_favourite;
                     data.drinkId = drink_id;
+                    data.reviewerId = authenticationService.getUserId();
                     if (drink.favouriteId) {
-                        favouriteService.updateFavourite(data, authenticationService.getUserId(), drink.favouriteId).then(function (response) {
+                        favouriteService.updateFavourite(data, drink.favouriteId).then(function (response) {
                             drink.favourite = response.data.favourited;
                         });
                     } else {
-                        favouriteService.createFavourite(data, authenticationService.getUserId()).then(function (response) {
+                        favouriteService.createFavourite(data).then(function (response) {
                             drink.favouriteId = response.data.id;
                             drink.favourite = response.data.favourited;
                         })
