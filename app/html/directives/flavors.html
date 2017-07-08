@@ -1,0 +1,11 @@
+<div class="panel panel-default" ng-hide="typeFilter == 'tea'">
+    <div class="panel-heading" >
+        <h1>{{flavorTypeUpper}}</h1>
+    </div>
+    <div class="panel-body" ng-repeat="drink in drinks | filter: { type: flavorType} | filter:search | filter:{ rating: ratingFilter}">
+        {{drink.name}}
+        <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon" ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
+        <star-rating-comp on-click="changeDrinkRating($event, drink.id)" speed="'slow'" id="flavor_type + '_'+ drink.id" rating="drink.rating"></star-rating-comp>
+    </div>
+    <add-flavor drinks="drinks" type="flavorType"></add-flavor>
+</div>

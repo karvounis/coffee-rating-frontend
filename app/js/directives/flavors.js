@@ -1,8 +1,14 @@
-app.directive('drink', ['drinksService', 'ratingService', 'authenticationService', 'favouriteService',
+app.directive('flavors', ['drinksService', 'ratingService', 'authenticationService', 'favouriteService',
     function (drinksService, ratingService, authenticationService, favouriteService) {
         return {
             restrict: 'E',
+            scope: {
+                drinks: '=',
+                flavorType: '='
+            },
             controller: ['$scope', function ($scope) {
+                $scope.flavorTypeUpper = $scope.flavorType.charAt(0).toUpperCase() + $scope.flavorType.slice(1) + 's';
+
                 $scope.changeDrinkRating = function ($event, drink_id) {
                     var drink = $scope.getDrinkBasedOnId(drink_id);
                     var data = {};
@@ -38,7 +44,18 @@ app.directive('drink', ['drinksService', 'ratingService', 'authenticationService
                         })
                     }
                 };
+
+                $scope.getDrinkBasedOnId = function (drink_id) {
+                    var returnDrink = null;
+                    $scope.drinks.forEach(function (drink) {
+                        if (drink.id == drink_id) {
+                            returnDrink = drink;
+                            return;
+                        }
+                    });
+                    return returnDrink;
+                };
             }],
-            templateUrl: '/assets/directives/drink.html'
+            templateUrl: '/assets/directives/flavors.html'
         };
     }]);

@@ -39,17 +39,6 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             })
         };
 
-        $scope.getDrinkBasedOnId = function (drink_id) {
-            var returnDrink = null;
-            $scope.drinks.forEach(function (drink) {
-                if (drink.id == drink_id) {
-                    returnDrink = drink;
-                    return;
-                }
-            });
-            return returnDrink;
-        };
-
         $scope.setRatingFilter = function ($event) {
             $scope.ratingFilter = $event.rating;
         };
