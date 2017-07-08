@@ -28,7 +28,6 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
         var getUsersFavourites = function () {
             favouriteService.getAllFavouritesOfUser(authenticationService.getUserId()).then(function (response) {
                 var data = response.data;
-                console.log(data);
                 $scope.drinks.forEach(function (drink) {
                     data.forEach(function (item) {
                         if (drink.id == item.drinkId) {
@@ -50,6 +49,10 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
                 }
             });
             return returnDrink;
+        };
+
+        $scope.setRatingFilter = function ($event) {
+            $scope.ratingFilter = $event.rating;
         };
 
         $scope.logout = function () {

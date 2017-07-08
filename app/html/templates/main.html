@@ -8,6 +8,7 @@
                     <span class="input-group-addon"><li class="glyphicon glyphicon-search"> </li></span>
                 </div>
             </div>
+            <star-rating-comp on-click="setRatingFilter($event)" speed="'slow'" id="'tea '+ drink.id" rating="drink.rating"></star-rating-comp>
         </form>
         <button type="button" class="btn btn-primary btn-lg pull-right" ng-click="addFlavor()">Add Flavor</button>
     </div>
