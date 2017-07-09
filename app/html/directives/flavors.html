@@ -4,16 +4,25 @@
     </div>
     <table>
         <tbody>
+        <tr>
+            <th>Name</th>
+            <th>Favourite</th>
+            <th>Your rating</th>
+            <th>Average rating</th>
+        </tr>
         <tr ng-repeat="drink in drinks | filter: { type: flavorType} | filter:search | filter:{ rating: ratingFilter}">
-            <td>
+            <td class="drink-name">
                 {{drink.name}}
             </td>
-            <td><i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
+            <td class="drink-favourite"><i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
                    ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
             </td>
-            <td>
+            <td class="drink-stars">
                 <rate ng-model="drink.rating" ng-click="changeDrinkRating($event, drink.id, drink.rating)"
                       icon-empty="fa-heart-o" icon-full="fa-coffee" icon-base="fa" class="font-color"></rate>
+            </td>
+            <td class="drink-average">
+                {{drink.average | number: 2}}
             </td>
         </tr>
         </tbody>

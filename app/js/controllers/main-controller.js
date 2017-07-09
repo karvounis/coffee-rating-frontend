@@ -10,11 +10,28 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             });
             getUsersRating();
             getUsersFavourites();
+            getDrinkAverages();
         });
 
         $scope.search = '';
         $scope.typeFilter = '';
         $scope.ratingFilter = '';
+
+        var getDrinkAverages = function () {
+            drinksService.getAverages().then(function (response) {
+                var data = response.data.data;
+                $scope.drinks.forEach(function (drink) {
+                    data.forEach(function (item) {
+                        if (drink.id == item.drinkId) {
+                            drink.average = item.average;
+                            return;
+                        }
+                    });
+                })
+            });
+        };
+
+        setInterval(getDrinkAverages, 5000);
 
         /**
          * Calls the API and gets the User's ratings

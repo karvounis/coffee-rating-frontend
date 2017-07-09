@@ -11,11 +11,7 @@ app.directive('flavors', ['drinksService', 'ratingService', 'authenticationServi
             },
             controller: ['$scope', function ($scope) {
                 $scope.flavorTypeUpper = $scope.flavorType.charAt(0).toUpperCase() + $scope.flavorType.slice(1) + 's';
-                $scope.getColor = function(rating, numOfStars, staticColor) {
-                    console.log(rating);
-                    console.log(numOfStars);
-                    console.log(staticColor);
-                };
+
                 $scope.changeDrinkRating = function ($event, drink_id, rating) {
                     var drink = $scope.getDrinkBasedOnId(drink_id);
                     var data = {};

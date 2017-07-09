@@ -7,6 +7,18 @@
 @import url("http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900");
 
 /* Basic */
+.drink-name {
+    width: 30%;
+}
+.drink-favourite {
+    width: 10%;
+}
+.drink-stars {
+    width: 20%;
+}
+.drink-average {
+    width: 10%;
+}
 .logout {
     background: #fff !important;
     color: #42241d !important;
@@ -375,6 +387,7 @@ ul.list > :first-child {
 /* Tables */
 
 table {
+    table-layout: fixed;
     width: 100%;
 }
 
