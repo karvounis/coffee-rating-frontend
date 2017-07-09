@@ -15,6 +15,10 @@ app.directive('addFlavor', ['drinksService', function (drinksService) {
                 $scope.flavorToAdd = false;
             };
 
+            /**
+             * Creates a new flavor to the API.
+             * @param drink
+             */
             $scope.save = function (drink) {
                 $('#save-drink').disabled = true;
                 drink.type = $scope.type;

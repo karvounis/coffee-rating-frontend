@@ -1,11 +1,22 @@
-<div class="panel panel-default" ng-hide="typeFilter && typeFilter != flavorType">
-    <div class="panel-heading" >
-        <h1>{{flavorTypeUpper}}</h1>
+<div class="container" ng-hide="typeFilter && typeFilter != flavorType">
+    <div>
+        <h3>{{flavorTypeUpper}}</h3>
     </div>
-    <div class="panel-body" ng-repeat="drink in drinks | filter: { type: flavorType} | filter:search | filter:{ rating: ratingFilter}">
-        {{drink.name}}
-        <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon" ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
-        <star-rating-comp on-click="changeDrinkRating($event, drink.id)" speed="'slow'" id="flavor_type + '_'+ drink.id" rating="drink.rating"></star-rating-comp>
-    </div>
+    <table>
+        <tbody>
+        <tr ng-repeat="drink in drinks | filter: { type: flavorType} | filter:search | filter:{ rating: ratingFilter}">
+            <td>
+                {{drink.name}}
+            </td>
+            <td><i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
+                   ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
+            </td>
+            <td>
+                <rate ng-model="drink.rating" ng-click="changeDrinkRating($event, drink.id, drink.rating)"
+                      icon-empty="fa-heart-o" icon-full="fa-coffee" icon-base="fa" class="font-color"></rate>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <add-flavor drinks="drinks" type="flavorType"></add-flavor>
 </div>
