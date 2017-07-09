@@ -1,5 +1,8 @@
 app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratingService', 'authenticationService', 'favouriteService',
     function ($scope, $location, drinksService, ratingService, authenticationService, favouriteService) {
+        /**
+         * Gets All Drinks from the API, the ratings that the user has provided and his favourites
+         */
         drinksService.getAllDrinks().then(function (response) {
             $scope.drinks = response.data;
             $scope.drinks.forEach(function (drink) {
@@ -9,6 +12,13 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             getUsersFavourites();
         });
 
+        $scope.search = '';
+        $scope.typeFilter = '';
+        $scope.ratingFilter = '';
+
+        /**
+         * Calls the API and gets the User's ratings
+         */
         var getUsersRating = function () {
             ratingService.getAllRatingsOfUser(authenticationService.getUserId()).then(function (response) {
                 var data = response.data;
@@ -24,6 +34,9 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             });
         };
 
+        /**
+         * Calls the API and gets the User's favourite drinks.
+         */
         var getUsersFavourites = function () {
             favouriteService.getAllFavouritesOfUser(authenticationService.getUserId()).then(function (response) {
                 var data = response.data;
@@ -39,10 +52,13 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             })
         };
 
-        $scope.setRatingFilter = function ($event) {
-            $scope.ratingFilter = $event.rating;
+        $scope.setRatingFilter = function ($event, rating) {
+            $scope.ratingFilter = rating;
         };
 
+        /**
+         * Logs out the User.
+         */
         $scope.logout = function () {
             authenticationService.logout(authenticationService.getAccessToken()).then(function (response) {
                 authenticationService.clearCredentials();
@@ -54,5 +70,5 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             $scope.search = '';
             $scope.typeFilter = '';
             $scope.ratingFilter = '';
-        }
+        };
     }]);

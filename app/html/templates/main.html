@@ -1,14 +1,16 @@
-<div class="panel panel-default">
-    <div class="panel-body">
+<div id="header">
+    <div class="container">
         <h1>Rate the drinks!</h1>
-        <form class="navbar-form navbar-right">
+        <form class="navbar-form">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                    <input type="text" class="form-control" style="border: 2px solid" placeholder="Search"
+                           ng-model="search">
                     <span class="input-group-addon"><li class="glyphicon glyphicon-search"> </li></span>
                 </div>
             </div>
-            <star-rating-comp on-click="setRatingFilter($event)" speed="'slow'" rating="ratingFilter"></star-rating-comp>
+            <rate ng-model="ratingFilterStars" ng-click="setRatingFilter($event, ratingFilterStars)"
+                  icon-empty="fa-heart-o" icon-full="fa-coffee" icon-base="fa"></rate>
             <label class="checkbox-inline">
                 <input type="radio" ng-model="typeFilter" value="coffee">
                 Coffee
@@ -17,10 +19,17 @@
                 <input type="radio" ng-model="typeFilter" value="tea">
                 Tea
             </label>
-            <button type="button" class="btn btn-primary btn-lg pull-right" ng-click="clearFilters()">Clear</button>
+
         </form>
+        <button type="button" class="button small logout" ng-show="search || ratingFilter || typeFilter"
+                ng-click="clearFilters()">Clear
+        </button>
+        <button type="button" class="button small logout" ng-click="logout()">Logout</button>
     </div>
 </div>
-<flavors drinks="drinks" flavor_type="'coffee'"></flavors>
-<flavors drinks="drinks" flavor_type="'tea'"></flavors>
-<button type="button" class="btn btn-primary btn-lg" ng-click="logout()">Logout</button>
+<div class="wrapper style1">
+    <flavors drinks="drinks" flavor_type="'coffee'" search="search" rating_filter="ratingFilter"
+             type_filter="typeFilter"></flavors>
+    <flavors drinks="drinks" flavor_type="'tea'" search="search" rating_filter="ratingFilter"
+             type_filter="typeFilter"></flavors>
+</div>

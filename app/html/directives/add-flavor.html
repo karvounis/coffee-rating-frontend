@@ -1,10 +1,6 @@
-<button type="button" class="btn btn-primary" ng-click="addFlavor()" ng-hide="flavorToAdd">Add Flavor</button>
+<button type="button" class="button small" ng-click="addFlavor()" ng-hide="flavorToAdd">Add Flavor</button>
 <form novalidate class="css-form" ng-show="flavorToAdd">
-    <label>Name: <input type="text" ng-model="drink.name" required /></label><br />
-    <input type="submit" id="save-drink" ng-click="save(drink)" value="Save" />
-    <input type="submit" ng-click="cancel()" value="Cancel" />
-
+    <label>Name:</label> <input type="text" class="form-control" ng-model="drink.name" required style="width:25%;"/>
+    <input class="button small" type="submit" id="save-drink" ng-click="save(drink)" value="Save"/>
+    <input class="button small" type="submit" ng-click="cancel()" value="Cancel"/>
 </form>
-<div class="alert alert-success fade in" id="sending-message" style="display:none;">
-    <div>{{sending}}</div>
-</div>

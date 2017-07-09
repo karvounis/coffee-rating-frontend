@@ -1,5 +1,8 @@
 app.controller('registerController', ['config', '$http', '$location', '$scope', 'authenticationService',
     function (config, $http, $location, $scope, authenticationService) {
+        /**
+         * Registers the User. If the registration was successful, logs him and redirects to the main page.
+         */
         $scope.register = function () {
             $scope.dataLoading = true;
             authenticationService.register($scope.user).then(function (response) {

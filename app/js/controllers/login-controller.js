@@ -1,5 +1,8 @@
 app.controller('loginController', ['config', '$location', '$scope', 'authenticationService',
     function (config, $location, $scope, authenticationService) {
+        /**
+         * Logs the User by getting the access token from the API.
+         */
         $scope.login = function () {
             $scope.dataLoading = true;
             authenticationService.login($scope.user).then(function (response) {
