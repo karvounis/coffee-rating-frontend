@@ -14,7 +14,8 @@
             <td class="drink-name">
                 {{drink.name}}
             </td>
-            <td class="drink-favourite"><i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
+            <td class="drink-favourite">
+                <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
                    ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
             </td>
             <td class="drink-stars">
@@ -22,7 +23,7 @@
                       icon-empty="fa-heart-o" icon-full="fa-coffee" icon-base="fa" class="font-color"></rate>
             </td>
             <td class="drink-average">
-                {{drink.average | number: 2}}
+                {{drink.average ? (drink.average | number: 2) : 'Be the first to rate!'}}
             </td>
         </tr>
         </tbody>

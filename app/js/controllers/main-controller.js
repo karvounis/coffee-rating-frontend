@@ -1,5 +1,10 @@
 app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratingService', 'authenticationService', 'favouriteService',
     function ($scope, $location, drinksService, ratingService, authenticationService, favouriteService) {
+        $scope.search = '';
+        $scope.typeFilter = '';
+        $scope.ratingFilter = '';
+        $scope.ratingFilterStars = 0;
+
         /**
          * Gets All Drinks from the API, the ratings that the user has provided and his favourites
          */
@@ -12,10 +17,6 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             getUsersFavourites();
             getDrinkAverages();
         });
-
-        $scope.search = '';
-        $scope.typeFilter = '';
-        $scope.ratingFilter = '';
 
         var getDrinkAverages = function () {
             drinksService.getAverages().then(function (response) {
@@ -69,6 +70,11 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             })
         };
 
+        /**
+         * Sets the filter for the rating.
+         * @param $event
+         * @param rating
+         */
         $scope.setRatingFilter = function ($event, rating) {
             $scope.ratingFilter = rating;
         };
@@ -83,9 +89,13 @@ app.controller('mainController', ['$scope', '$location', 'drinksService', 'ratin
             });
         };
 
+        /**
+         * Clears all filters
+         */
         $scope.clearFilters = function () {
             $scope.search = '';
             $scope.typeFilter = '';
             $scope.ratingFilter = '';
+            $scope.ratingFilterStars = 0;
         };
     }]);

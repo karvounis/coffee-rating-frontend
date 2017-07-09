@@ -18,11 +18,11 @@ app.directive('flavors', ['drinksService', 'ratingService', 'authenticationServi
                     data.date = new Date().toISOString();
                     data.rating = rating;
                     data.reviewerId = authenticationService.getUserId();
+                    data.drinkId = drink_id;
                     if (drink.ratingId) {
                         data.id = drink.ratingId;
                         ratingService.updateRating(data, drink.ratingId);
                     } else {
-                        data.drinkId = drink_id;
                         ratingService.createRating(data).then(function (response) {
                             drink.ratingId = response.data.id;
                             drink.rating = response.data.rating;

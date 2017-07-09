@@ -167,12 +167,10 @@ input[type="email"] {
 }
 
 input[type="text"]::placeholder {
-    color: pink;
+    color: white;
 }
 
 ::-webkit-input-placeholder {
-    color: inherit;
-    opacity: 0.1;
     position: relative;
     top: 3px;
 }
