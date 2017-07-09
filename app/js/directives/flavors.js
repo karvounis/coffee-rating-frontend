@@ -4,7 +4,10 @@ app.directive('flavors', ['drinksService', 'ratingService', 'authenticationServi
             restrict: 'E',
             scope: {
                 drinks: '=',
-                flavorType: '='
+                flavorType: '=',
+                ratingFilter: '=',
+                search: '=',
+                typeFilter: '='
             },
             controller: ['$scope', function ($scope) {
                 $scope.flavorTypeUpper = $scope.flavorType.charAt(0).toUpperCase() + $scope.flavorType.slice(1) + 's';
