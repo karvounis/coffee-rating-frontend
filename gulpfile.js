@@ -20,7 +20,7 @@ gulp.task('js', function () {
         'node_modules/jsrsasign/lib/footer.js',
         'node_modules/ionic1-star-rating/dist/index.js',
         'node_modules/jsrsasign/lib/jsrsasign.js',
-        'app/libraries/angular-rate/dist/js/angular-rate.js'
+        'app/libraries/angular-rate.js'
     ])
         .pipe(gulp.dest('public/assets/js'));
 
@@ -86,7 +86,7 @@ gulp.task('css', function () {
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
-        'app/libraries/angular-rate/dist/css/rate.css'
+        'app/libraries/rate.css'
     ])
         .pipe(gulp.dest('public/assets/css'));
     gulp.src([
