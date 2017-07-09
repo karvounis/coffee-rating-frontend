@@ -1,0 +1,32 @@
+<div class="container" ng-hide="typeFilter && typeFilter != flavorType">
+    <div>
+        <h3>{{flavorTypeUpper}}</h3>
+    </div>
+    <table>
+        <tbody>
+        <tr>
+            <th>Name</th>
+            <th>Favourite</th>
+            <th>Your rating</th>
+            <th>Average rating</th>
+        </tr>
+        <tr ng-repeat="drink in drinks | filter: { type: flavorType} | filter:search | filter:{ rating: ratingFilter}">
+            <td class="drink-name">
+                {{drink.name}}
+            </td>
+            <td class="drink-favourite">
+                <i ng-click="markAs(!drink.favourite, drink.id)" class="glyphicon font-color"
+                   ng-class="{'glyphicon-heart' : drink.favourite , 'glyphicon-heart-empty' : !drink.favourite }"></i>
+            </td>
+            <td class="drink-stars">
+                <rate ng-model="drink.rating" ng-click="changeDrinkRating($event, drink.id, drink.rating)"
+                      icon-empty="fa-heart-o" icon-full="fa-coffee" icon-base="fa" class="font-color"></rate>
+            </td>
+            <td class="drink-average">
+                {{drink.average ? (drink.average | number: 2) : 'Be the first to rate!'}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <add-flavor drinks="drinks" type="flavorType"></add-flavor>
+</div>
